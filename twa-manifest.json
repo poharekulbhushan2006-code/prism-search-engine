@@ -1,0 +1,37 @@
+{
+  "packageId": "ai.prism.browser",
+  "host": "prism-search.app",
+  "name": "PRISM Search & Safari Browser",
+  "launcherName": "PRISM",
+  "themeColor": "#0F172A",
+  "navigationColor": "#070B14",
+  "backgroundColor": "#070B14",
+  "enableNotifications": true,
+  "startUrl": "/",
+  "iconUrl": "https://prism-search.app/icons/icon-512.png",
+  "maskableIconUrl": "https://prism-search.app/icons/icon-maskable.png",
+  "appVersionCode": 1,
+  "appVersionName": "1.0.0",
+  "shortcuts": [
+    {
+      "name": "New Search",
+      "shortName": "Search",
+      "url": "/?action=search",
+      "icon": "https://prism-search.app/icons/icon-192.png"
+    }
+  ],
+  "generatorApp": "bubblewrap-cli",
+  "webManifestUrl": "https://prism-search.app/manifest.json",
+  "fallbackType": "customtabs",
+  "features": {
+    "locationDelegation": {
+      "enabled": false
+    },
+    "playBilling": {
+      "enabled": false
+    }
+  },
+  "alphaDependencies": {
+    "enabled": false
+  }
+}

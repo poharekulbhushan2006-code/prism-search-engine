@@ -18,31 +18,61 @@ import {
   Tv,
   Film,
   Music,
+  Music2,
   Code,
   Gamepad2,
   Compass,
-  Radio
+  Radio,
+  Star,
+  Globe
 } from 'lucide-react';
 
 const CATEGORIES = [
   { id: 'All', label: 'All Content', icon: Compass },
   { id: 'TMKOC & Shows', label: 'TMKOC & Shows', icon: Tv },
   { id: 'Cartoons & Anime', label: 'Cartoons & Anime', icon: Film },
-  { id: 'Music & Lofi', label: 'Music & Lofi', icon: Music },
+  { id: 'Bollywood Songs', label: 'Bollywood Songs', icon: Music },
+  { id: 'Marathi Songs', label: 'Marathi Songs', icon: Music2 },
+  { id: 'English Songs', label: 'English Songs', icon: Star },
+  { id: 'Hollywood Songs', label: 'Hollywood Songs', icon: Globe },
+  { id: 'Music & Lofi', label: 'Lofi & Beats', icon: Radio },
   { id: 'Technology', label: 'Technology', icon: Sparkles },
   { id: 'Coding', label: 'Coding', icon: Code },
   { id: 'Gaming', label: 'Gaming', icon: Gamepad2 }
 ];
 
 const POPULAR_QUICK_TAGS = [
+  // TMKOC
   'TMKOC Latest Episode',
+  'Jethalal Comedy',
+  'Bhide & Madhavi',
+  'Tapu Sena',
+  'Babita Ji Scenes',
+  // Cartoons
   'Tom and Jerry',
   'Shinchan in Hindi',
-  'Doraemon Full',
-  'Lofi Study Beats',
-  'MrBeast',
-  'React Architecture 2026',
-  'Cyberpunk 4K'
+  'Doraemon Full Episode',
+  'Oggy and Cockroaches',
+  'Chota Bheem Full',
+  'Dragon Ball Z Hindi',
+  // Bollywood Songs
+  'Tum Hi Ho Aashiqui 2',
+  'Kesariya Brahmastra',
+  'Jai Jai Shiv Shankar',
+  'Srivalli Pushpa Songs',
+  // Marathi Songs
+  'Nach Ga Ghuma Marathi',
+  'Apsara Ali Marathi',
+  'Zingaat Sairat',
+  'Ek Taraa Marathi',
+  // English & Hollywood
+  'Shape of You Ed Sheeran',
+  'Blinding Lights Weeknd',
+  'Levitating Dua Lipa',
+  'As It Was Harry Styles',
+  'Believer Imagine Dragons',
+  // Lofi
+  'Lofi Study Beats'
 ];
 
 export default function PrismTube({ initialQuery = '', onOpenSearch }) {

@@ -84,6 +84,174 @@ const FALLBACK_VIDEOS = [
     description: 'Best Tapu Sena episodes — Goli, Sonu, Gogi, Popatlal and the Gokuldham playground adventures in mega HD.',
     embedUrl: 'https://www.youtube-nocookie.com/embed/Q1dRiT1wAfg'
   },
+  {
+    id: 'SuHT3_r1aMk',
+    title: 'Ep 4001 - Popatlal Ki Shaadi Ka Plan | Taarak Mehta Ka Ooltah Chashmah',
+    channel: 'Taarak Mehta Ka Ooltah Chashmah',
+    channelAvatar: 'https://api.dicebear.com/7.x/initials/svg?seed=TMKOC2&backgroundColor=ef4444',
+    views: '3.2M views', uploadDate: '1 month ago', duration: '22:10',
+    category: 'TMKOC & Shows',
+    tags: ['popatlal', 'tmkoc', 'comedy', 'gokuldham', 'shaadi'],
+    thumbnail: 'https://i.ytimg.com/vi/SuHT3_r1aMk/hqdefault.jpg',
+    description: 'Popatlal\'s marriage plan creates chaos in Gokuldham society in this hilarious TMKOC episode.',
+    embedUrl: 'https://www.youtube-nocookie.com/embed/SuHT3_r1aMk'
+  },
+  {
+    id: 'Y0JkFJjy7bk',
+    title: 'Babita Ji Aur Iyer Ji - Best Romantic Moments | TMKOC Compilation',
+    channel: 'Sony SAB',
+    channelAvatar: 'https://api.dicebear.com/7.x/initials/svg?seed=BabitaJi&backgroundColor=db2777',
+    views: '4.1M views', uploadDate: '2 weeks ago', duration: '28:40',
+    category: 'TMKOC & Shows',
+    tags: ['babita', 'iyer', 'tmkoc', 'romance', 'compilation'],
+    thumbnail: 'https://i.ytimg.com/vi/Y0JkFJjy7bk/hqdefault.jpg',
+    description: 'Babita Ji and Iyer Ji\'s most memorable moments from TMKOC — romantic tension and comedy gold.',
+    embedUrl: 'https://www.youtube-nocookie.com/embed/Y0JkFJjy7bk'
+  },
+  {
+    id: 'nROJCakmYzA',
+    title: 'Ep 3800 - Jethalal Fanda Main! | Taarak Mehta Ka Ooltah Chashmah | Full Episode',
+    channel: 'Taarak Mehta Ka Ooltah Chashmah',
+    channelAvatar: 'https://api.dicebear.com/7.x/initials/svg?seed=JethalEp3800&backgroundColor=f59e0b',
+    views: '2.8M views', uploadDate: '6 months ago', duration: '21:30',
+    category: 'TMKOC & Shows',
+    tags: ['jethalal', 'tmkoc', 'episode 3800', 'comedy', 'sony sab'],
+    thumbnail: 'https://i.ytimg.com/vi/nROJCakmYzA/hqdefault.jpg',
+    description: 'Jethalal lands himself in another impossibly funny situation! Full episode of TMKOC on Sony SAB.',
+    embedUrl: 'https://www.youtube-nocookie.com/embed/nROJCakmYzA'
+  },
+  {
+    id: 'ZsBTSUfm3cg',
+    title: 'Daya Bhabhi Ke Best Moments | TMKOC | Funny & Emotional Scenes',
+    channel: 'Sony SAB',
+    channelAvatar: 'https://api.dicebear.com/7.x/initials/svg?seed=DayaBhabhi&backgroundColor=e11d48',
+    views: '6.5M views', uploadDate: '1 month ago', duration: '55:18',
+    category: 'TMKOC & Shows',
+    tags: ['daya bhabhi', 'tmkoc', 'funny', 'emotional', 'compilation'],
+    thumbnail: 'https://i.ytimg.com/vi/ZsBTSUfm3cg/hqdefault.jpg',
+    description: 'Daya Bhabhi\'s best emotional and funny moments from Taarak Mehta — the heart of Gokuldham!',
+    embedUrl: 'https://www.youtube-nocookie.com/embed/ZsBTSUfm3cg'
+  },
+  {
+    id: 'BVl11nZsWwE',
+    title: 'Champaklal Best Scenes | Bapu Ji Ki Comedy | TMKOC Compilation',
+    channel: 'Taarak Mehta Ka Ooltah Chashmah',
+    channelAvatar: 'https://api.dicebear.com/7.x/initials/svg?seed=Champaklal&backgroundColor=7c3aed',
+    views: '3.9M views', uploadDate: '3 weeks ago', duration: '40:00',
+    category: 'TMKOC & Shows',
+    tags: ['champaklal', 'bapu ji', 'tmkoc', 'comedy', 'old man'],
+    thumbnail: 'https://i.ytimg.com/vi/BVl11nZsWwE/hqdefault.jpg',
+    description: 'Champaklal / Bapu Ji\'s most hilarious moments — his old-school wisdom and innocent mischief at its best.',
+    embedUrl: 'https://www.youtube-nocookie.com/embed/BVl11nZsWwE'
+  },
+  {
+    id: 'A7mSJd5HOBE',
+    title: 'Madhavi Bhide Best Moments | Bhide Ki Wife | TMKOC Funny Clips',
+    channel: 'Sony SAB',
+    channelAvatar: 'https://api.dicebear.com/7.x/initials/svg?seed=Madhavi&backgroundColor=0284c7',
+    views: '2.4M views', uploadDate: '5 weeks ago', duration: '32:00',
+    category: 'TMKOC & Shows',
+    tags: ['madhavi', 'bhide', 'tmkoc', 'funny', 'madhavi bhide'],
+    thumbnail: 'https://i.ytimg.com/vi/A7mSJd5HOBE/hqdefault.jpg',
+    description: 'Madhavi Bhide\'s funniest scenes — her strict husband Bhide vs her friendly nature, pure comedy gold.',
+    embedUrl: 'https://www.youtube-nocookie.com/embed/A7mSJd5HOBE'
+  },
+  {
+    id: 'Dk7UbqJNUZg',
+    title: 'Ep 4750 - Gokuldham\'s New Problem! | Taarak Mehta Ka Ooltah Chashmah Full Ep',
+    channel: 'Taarak Mehta Ka Ooltah Chashmah',
+    channelAvatar: 'https://api.dicebear.com/7.x/initials/svg?seed=TMKOC4750&backgroundColor=dc2626',
+    views: '1.9M views', uploadDate: '3 months ago', duration: '20:44',
+    category: 'TMKOC & Shows',
+    tags: ['tmkoc', 'ep 4750', 'gokuldham', 'full episode', 'sony sab'],
+    thumbnail: 'https://i.ytimg.com/vi/Dk7UbqJNUZg/hqdefault.jpg',
+    description: 'A brand new problem hits Gokuldham society! Full episode of Taarak Mehta — laughs guaranteed.',
+    embedUrl: 'https://www.youtube-nocookie.com/embed/Dk7UbqJNUZg'
+  },
+  {
+    id: 'kF8HmPQrCXQ',
+    title: 'TMKOC 1 Hour Non-Stop Comedy | Jethalal & Bhide Mega Laughs | Sony SAB',
+    channel: 'Sony SAB',
+    channelAvatar: 'https://api.dicebear.com/7.x/initials/svg?seed=SonySAB1Hr&backgroundColor=9333ea',
+    views: '8.2M views', uploadDate: '2 months ago', duration: '1:02:30',
+    category: 'TMKOC & Shows',
+    tags: ['tmkoc', '1 hour', 'comedy', 'jethalal', 'bhide', 'non-stop'],
+    thumbnail: 'https://i.ytimg.com/vi/kF8HmPQrCXQ/hqdefault.jpg',
+    description: '1 hour of non-stop TMKOC comedy — Jethalal vs Bhide, Tapu Sena mischief, Popatlal\'s antics. Pure entertainment!',
+    embedUrl: 'https://www.youtube-nocookie.com/embed/kF8HmPQrCXQ'
+  },
+  {
+    id: 'vVaRhFyoFjY',
+    title: 'Gokuldham Mein Diwali | Special Episode | Taarak Mehta Ka Ooltah Chashmah',
+    channel: 'Taarak Mehta Ka Ooltah Chashmah',
+    channelAvatar: 'https://api.dicebear.com/7.x/initials/svg?seed=TMKOCDiwali&backgroundColor=f97316',
+    views: '5.1M views', uploadDate: '8 months ago', duration: '45:00',
+    category: 'TMKOC & Shows',
+    tags: ['tmkoc', 'diwali special', 'gokuldham', 'festival', 'special episode'],
+    thumbnail: 'https://i.ytimg.com/vi/vVaRhFyoFjY/hqdefault.jpg',
+    description: 'Gokuldham celebrates Diwali in the most hilarious way! Special festive episode of TMKOC.',
+    embedUrl: 'https://www.youtube-nocookie.com/embed/vVaRhFyoFjY'
+  },
+  {
+    id: 'xvFZjo5PgG0',
+    title: 'Ep 3500 - Jethalal Aur Babita Ji Ka Scene | TMKOC Full Episode',
+    channel: 'Taarak Mehta Ka Ooltah Chashmah',
+    channelAvatar: 'https://api.dicebear.com/7.x/initials/svg?seed=TMKOCEp3500&backgroundColor=16a34a',
+    views: '3.7M views', uploadDate: '1 year ago', duration: '22:00',
+    category: 'TMKOC & Shows',
+    tags: ['tmkoc', 'ep 3500', 'jethalal', 'babita', 'comedy'],
+    thumbnail: 'https://i.ytimg.com/vi/xvFZjo5PgG0/hqdefault.jpg',
+    description: 'Jethalal is mesmerized by Babita Ji again! Classic TMKOC comedy in this full episode.',
+    embedUrl: 'https://www.youtube-nocookie.com/embed/xvFZjo5PgG0'
+  },
+  {
+    id: 'GNv7-n1ZMPM',
+    title: 'Bagha Best Comedy Moments | TMKOC | 30 Min Compilation',
+    channel: 'Sony SAB',
+    channelAvatar: 'https://api.dicebear.com/7.x/initials/svg?seed=Bagha&backgroundColor=84cc16',
+    views: '2.1M views', uploadDate: '4 months ago', duration: '30:00',
+    category: 'TMKOC & Shows',
+    tags: ['bagha', 'tmkoc', 'comedy', 'gokuldham', 'funny'],
+    thumbnail: 'https://i.ytimg.com/vi/GNv7-n1ZMPM/hqdefault.jpg',
+    description: 'Bagha\'s most memorable comedy scenes from TMKOC — his funny friendship with Jethalal and innocent confusion.',
+    embedUrl: 'https://www.youtube-nocookie.com/embed/GNv7-n1ZMPM'
+  },
+  {
+    id: 'CdgQyq3zEXU',
+    title: 'TMKOC Best Moments 2024 | New Episodes Highlights | Sony SAB',
+    channel: 'Sony SAB',
+    channelAvatar: 'https://api.dicebear.com/7.x/initials/svg?seed=TMKOC2024&backgroundColor=2563eb',
+    views: '4.4M views', uploadDate: '2 weeks ago', duration: '38:15',
+    category: 'TMKOC & Shows',
+    tags: ['tmkoc', '2024', 'highlights', 'best moments', 'sony sab'],
+    thumbnail: 'https://i.ytimg.com/vi/CdgQyq3zEXU/hqdefault.jpg',
+    description: 'TMKOC 2024 highlight reel — the funniest scenes, best characters, and iconic moments of the year.',
+    embedUrl: 'https://www.youtube-nocookie.com/embed/CdgQyq3zEXU'
+  },
+  {
+    id: 'L_jZoKxd8HU',
+    title: 'Ep 4500 - Taarak Mehta Ka Ooltah Chashmah | Jethalal Ki Dukaan Mein Lafda',
+    channel: 'Taarak Mehta Ka Ooltah Chashmah',
+    channelAvatar: 'https://api.dicebear.com/7.x/initials/svg?seed=TMKOC4500&backgroundColor=ea580c',
+    views: '2.2M views', uploadDate: '5 months ago', duration: '21:00',
+    category: 'TMKOC & Shows',
+    tags: ['tmkoc', 'ep 4500', 'jethalal', 'dukaan', 'comedy'],
+    thumbnail: 'https://i.ytimg.com/vi/L_jZoKxd8HU/hqdefault.jpg',
+    description: 'Trouble at Jethalal\'s electronics shop creates big laughs in episode 4500 of TMKOC.',
+    embedUrl: 'https://www.youtube-nocookie.com/embed/L_jZoKxd8HU'
+  },
+  {
+    id: 'dJTu-PGMdpg',
+    title: 'Sodhi Best Comedy Scenes | TMKOC | Oye Oye! Punjabi Tadka Compilation',
+    channel: 'Sony SAB',
+    channelAvatar: 'https://api.dicebear.com/7.x/initials/svg?seed=Sodhi&backgroundColor=d97706',
+    views: '3.3M views', uploadDate: '6 weeks ago', duration: '34:22',
+    category: 'TMKOC & Shows',
+    tags: ['sodhi', 'tmkoc', 'punjabi', 'comedy', 'oye oye'],
+    thumbnail: 'https://i.ytimg.com/vi/dJTu-PGMdpg/hqdefault.jpg',
+    description: 'Sodhi\'s Punjabi energy and Oye Oye catchphrases in the best TMKOC compilation — pure comedy!',
+    embedUrl: 'https://www.youtube-nocookie.com/embed/dJTu-PGMdpg'
+  },
   // ─── Cartoons & Anime ────────────────────────────────────────
   {
     id: '_GE6zf_hH48',
@@ -458,7 +626,7 @@ const FALLBACK_VIDEOS = [
 /**
  * Scrapes real YouTube search results directly via ytInitialData
  */
-async function scrapeYouTube(searchQuery) {
+async function scrapeYouTube(searchQuery, forcedCategory = null) {
   const url = `https://www.youtube.com/results?search_query=${encodeURIComponent(searchQuery)}`;
   const response = await axios.get(url, {
     headers: {
@@ -466,7 +634,7 @@ async function scrapeYouTube(searchQuery) {
       'Accept-Language': 'en-US,en;q=0.9',
       'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
     },
-    timeout: 5000
+    timeout: 7000
   });
 
   const html = response.data;
@@ -475,7 +643,7 @@ async function scrapeYouTube(searchQuery) {
 
   const ytData = JSON.parse(match[1]);
   const sectionList = ytData.contents?.twoColumnSearchResultsRenderer?.primaryContents?.sectionListRenderer?.contents || [];
-  
+
   const parsedVideos = [];
 
   for (const section of sectionList) {
@@ -495,8 +663,10 @@ async function scrapeYouTube(searchQuery) {
                           v.descriptionSnippet?.runs?.map((r) => r.text).join('') ||
                           `Watch ${title} on PRISM Tube with 100% ad-free private streaming.`;
 
-      // Deterministic colorful avatar based on channel name
-      const channelAvatar = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(channel)}&backgroundColor=0284c7,2563eb,7c3aed,db2777`;
+      const channelAvatar = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(channel)}&backgroundColor=0284c7,2563eb,7c3aed,db2777,f97316,16a34a`;
+
+      // Use forcedCategory (from active category click) or infer from title/query
+      const category = forcedCategory || inferCategory(title, searchQuery);
 
       parsedVideos.push({
         id: videoId,
@@ -506,8 +676,8 @@ async function scrapeYouTube(searchQuery) {
         views,
         uploadDate,
         duration,
-        category: inferCategory(title, searchQuery),
-        tags: [channel.toLowerCase(), ...title.toLowerCase().split(/\s+/).slice(0, 4)],
+        category,
+        tags: [channel.toLowerCase(), ...title.toLowerCase().split(/\s+/).slice(0, 5)],
         thumbnail,
         description,
         embedUrl: `https://www.youtube-nocookie.com/embed/${videoId}`
@@ -519,6 +689,29 @@ async function scrapeYouTube(searchQuery) {
   }
 
   return parsedVideos;
+}
+
+/**
+ * Runs multiple YouTube searches for TMKOC to gather a larger pool of episodes
+ */
+async function scrapeYouTubeMulti(queries, forcedCategory) {
+  const seen = new Set();
+  const all = [];
+  for (const q of queries) {
+    try {
+      const results = await scrapeYouTube(q, forcedCategory);
+      for (const v of results) {
+        if (!seen.has(v.id)) {
+          seen.add(v.id);
+          all.push(v);
+        }
+      }
+    } catch (e) {
+      // continue on individual query failure
+    }
+    if (all.length >= 48) break;
+  }
+  return all;
 }
 
 function inferCategory(title = '', query = '') {
@@ -598,9 +791,22 @@ export async function searchVideos(query = '', category = 'All') {
     };
   }
 
-  // 2. Scrape live YouTube results
+  // 2. Scrape live YouTube results — multi-query for TMKOC to get lots of episodes
   try {
-    const liveVideos = await scrapeYouTube(effectiveQuery);
+    let liveVideos = [];
+    const forced = cleanCat !== 'All' ? cleanCat : null;
+
+    if (cleanCat === 'TMKOC & Shows') {
+      // Run 3 targeted queries to fetch maximum TMKOC episodes
+      liveVideos = await scrapeYouTubeMulti([
+        'taarak mehta ka ooltah chashmah latest full episode sony sab',
+        'tmkoc new episode 2024 jethalal bhide comedy full',
+        'taarak mehta episodes gokuldham jethalal tapu sena'
+      ], forced);
+    } else {
+      liveVideos = await scrapeYouTube(effectiveQuery, forced);
+    }
+
     if (liveVideos && liveVideos.length > 0) {
       videoCache.set(cacheKey, liveVideos);
       return {

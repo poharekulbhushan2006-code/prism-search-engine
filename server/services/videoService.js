@@ -621,7 +621,7 @@ const FALLBACK_VIDEOS = [
     description: 'Full path tracing benchmark, DLSS 3.5 ray reconstruction and indirect bounce caustics analysis.',
     embedUrl: 'https://www.youtube-nocookie.com/embed/yPYZpwSpKmA'
   }
-];];
+];
 
 /**
  * Scrapes real YouTube search results directly via ytInitialData
@@ -631,10 +631,10 @@ async function scrapeYouTube(searchQuery, forcedCategory = null) {
   const response = await axios.get(url, {
     headers: {
       'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
-      'Accept-Language': 'en-US,en;q=0.9',
+      'Accept-Language': 'en-US,en;q=0.9,hi;q=0.8',
       'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
     },
-    timeout: 7000
+    timeout: 4000
   });
 
   const html = response.data;
@@ -692,24 +692,25 @@ async function scrapeYouTube(searchQuery, forcedCategory = null) {
 }
 
 /**
- * Runs multiple YouTube searches for TMKOC to gather a larger pool of episodes
+ * Runs multiple YouTube searches IN PARALLEL to gather a larger pool of episodes.
+ * Uses Promise.allSettled so one failure does not block others.
+ * Total time = max(individual times) not sum — safe within Vercel's 10s limit.
  */
 async function scrapeYouTubeMulti(queries, forcedCategory) {
+  const results = await Promise.allSettled(
+    queries.map((q) => scrapeYouTube(q, forcedCategory))
+  );
   const seen = new Set();
   const all = [];
-  for (const q of queries) {
-    try {
-      const results = await scrapeYouTube(q, forcedCategory);
-      for (const v of results) {
+  for (const result of results) {
+    if (result.status === 'fulfilled' && Array.isArray(result.value)) {
+      for (const v of result.value) {
         if (!seen.has(v.id)) {
           seen.add(v.id);
           all.push(v);
         }
       }
-    } catch (e) {
-      // continue on individual query failure
     }
-    if (all.length >= 48) break;
   }
   return all;
 }

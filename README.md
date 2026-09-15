@@ -1,10 +1,10 @@
 # PRISM — Advanced Search Engine, Safari Browser & Multi-App Ecosystem
 
-[![PRISM Architecture](https://img.shields.io/badge/PRISM-Engine_v2.0-8b5cf6.svg)](https://github.com)
+[![PRISM Architecture](https://img.shields.io/badge/PRISM-Engine_v2.0-8b5cf6.svg)](https://github.com/poharekulbhushan2006-code/prism-search-engine)
 [![Vite](https://img.shields.io/badge/Vite-6.1-646cff.svg)](https://vitejs.dev/)
 [![React](https://img.shields.io/badge/React-18.3-61dafb.svg)](https://react.org/)
 [![License](https://img.shields.io/badge/License-MIT-emerald.svg)](LICENSE)
-[![Vercel Deployment](https://img.shields.io/badge/Deploy-Vercel-black.svg)](https://vercel.com)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/poharekulbhushan2006-code/prism-search-engine)
 
 **PRISM** is an ultra-fast, privacy-first, anti-SEO search engine and browser ecosystem inspired by the clean aesthetics of Google and Apple Safari. Built with high-fidelity micro-animations, glassmorphism, and hardware-accelerated mapping.
 

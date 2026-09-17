@@ -35,7 +35,7 @@ import SiteFooter from './components/SiteFooter';
 import { RealtimeColorsProvider } from './components/RealtimeColors';
 import { HaikeiLayeredWaves, HaikeiFluidBlobs } from './components/HaikeiBackgrounds';
 import { MotionFadeIn, MotionScale } from './components/MotionPrimitives';
-import AppOpeningSplash from './components/AppOpeningSplash';
+import NetflixPrismIntro from './components/NetflixPrismIntro';
 import { updatePageMetadata } from './utils/seo';
 import { analytics } from './utils/analytics';
 import { ShieldAlert, Sparkles, Filter, Clock } from 'lucide-react';
@@ -178,6 +178,13 @@ export default function App() {
   });
   const [authToken, setAuthToken] = useState(() => localStorage.getItem('prism_token') || null);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [showNetflixIntro, setShowNetflixIntro] = useState(true);
+
+  useEffect(() => {
+    const handlePlayIntro = () => setShowNetflixIntro(true);
+    window.addEventListener('prism:play-netflix-intro', handlePlayIntro);
+    return () => window.removeEventListener('prism:play-netflix-intro', handlePlayIntro);
+  }, []);
   const [searchesCount, setSearchesCount] = useState(() => {
     return parseInt(localStorage.getItem('prism_searches_count') || '14', 10);
   });
@@ -677,8 +684,10 @@ export default function App() {
 
   return (
     <RealtimeColorsProvider>
-      {/* Cinematic Logo Opening Sequence on App Open */}
-      <AppOpeningSplash />
+      {/* Netflix-Style "Ta-Dum" Opening Animation */}
+      {showNetflixIntro && (
+        <NetflixPrismIntro onComplete={() => setShowNetflixIntro(false)} />
+      )}
 
       <div className="browser-shell">
         {/* Dynamic Interactive Prism Particles Canvas */}

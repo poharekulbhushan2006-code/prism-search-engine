@@ -32,6 +32,9 @@ import CookieBanner from './components/CookieBanner';
 import StickyMobileCTA from './components/StickyMobileCTA';
 import ResultsSkeleton from './components/ResultsSkeleton';
 import SiteFooter from './components/SiteFooter';
+import { RealtimeColorsProvider } from './components/RealtimeColors';
+import { HaikeiLayeredWaves, HaikeiFluidBlobs } from './components/HaikeiBackgrounds';
+import { MotionFadeIn, MotionScale } from './components/MotionPrimitives';
 import { updatePageMetadata } from './utils/seo';
 import { analytics } from './utils/analytics';
 import { ShieldAlert, Sparkles, Filter, Clock } from 'lucide-react';
@@ -672,9 +675,10 @@ export default function App() {
   const pinnedUrls = new Set(pinnedItems.map((p) => p.link));
 
   return (
-    <div className="browser-shell">
-      {/* Dynamic Interactive Prism Particles Canvas */}
-      <PrismBackground />
+    <RealtimeColorsProvider>
+      <div className="browser-shell">
+        {/* Dynamic Interactive Prism Particles Canvas */}
+        <PrismBackground />
 
       {/* 1. Complete Browser Window Chrome (Tabs + Nav + Omnibox) */}
       <BrowserChrome
@@ -710,14 +714,20 @@ export default function App() {
         <ErrorBoundary key={activeTabId} onReset={() => handleGoHome()}>
           {/* VIEW A: PRISM Clean Minimalist Start Page */}
           {activeTab.type === 'home' && (
-            <SpeedDial
-              onSearch={(q, lens) => executeSearchInTab(q, lens || 'all')}
-              onNavigateUrl={(url) => handleNavigateUrl(url, false)}
-              onOpenInstall={() => setIsInstallModalOpen(true)}
-              onOpenAuthModal={() => setIsAuthModalOpen(true)}
-              onLaunchApp={handleLaunchApp}
-              currentUser={currentUser}
-            />
+            <div style={{ position: 'relative', width: '100%', minHeight: '100%' }}>
+              <HaikeiLayeredWaves opacity={0.7} />
+              <HaikeiFluidBlobs opacity={0.35} />
+              <MotionFadeIn duration={0.6}>
+                <SpeedDial
+                  onSearch={(q, lens) => executeSearchInTab(q, lens || 'all')}
+                  onNavigateUrl={(url) => handleNavigateUrl(url, false)}
+                  onOpenInstall={() => setIsInstallModalOpen(true)}
+                  onOpenAuthModal={() => setIsAuthModalOpen(true)}
+                  onLaunchApp={handleLaunchApp}
+                  currentUser={currentUser}
+                />
+              </MotionFadeIn>
+            </div>
           )}
 
           {/* VIEW B: In-Browser Distraction-Free Reader View */}
@@ -787,12 +797,14 @@ export default function App() {
 
           {/* VIEW C: PRISM Multi-Lens Search Results */}
           {activeTab.type === 'search' && activeTab.data && !isLoading && (
-            <div className="main-content">
-              {/* Top Source Transparency Rail */}
-              <SourceRail
-                sources={activeTab.data.aiOverview?.citedSources || activeTab.data.results?.slice(0, 5)}
-                onOpenInTab={(link, title) => handleNavigateUrl(link, true)}
-              />
+            <div className="main-content" style={{ position: 'relative' }}>
+              <HaikeiLayeredWaves opacity={0.35} />
+              <MotionFadeIn duration={0.5}>
+                {/* Top Source Transparency Rail */}
+                <SourceRail
+                  sources={activeTab.data.aiOverview?.citedSources || activeTab.data.results?.slice(0, 5)}
+                  onOpenInTab={(link, title) => handleNavigateUrl(link, true)}
+                />
 
               {/* Quick Dossier Executive Summary & Key Entity Hashtags */}
               {activeTab.data.dossier && (
@@ -985,6 +997,7 @@ export default function App() {
                 onSelectLens={(lens) => executeSearchInTab(activeTab.url, lens)}
                 onOpenInTab={(link, title) => handleNavigateUrl(link, true)}
               />
+              </MotionFadeIn>
             </div>
           )}
         </ErrorBoundary>
@@ -1056,5 +1069,6 @@ export default function App() {
         onOpenPrivacy={() => handleNavigatePage('privacy')}
       />
     </div>
+    </RealtimeColorsProvider>
   );
 }

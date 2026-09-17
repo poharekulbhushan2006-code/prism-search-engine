@@ -1,6 +1,7 @@
 import React from 'react';
 import SearchBar from './SearchBar';
 import { Download, User, MapPin, Play, Mail, Globe, ShieldCheck } from 'lucide-react';
+import { MotionFloat, MotionFadeIn, MotionScale } from './MotionPrimitives';
 
 export default function SpeedDial({
   onSearch,
@@ -49,7 +50,8 @@ export default function SpeedDial({
   return (
     <div className="masterpiece-startpage clean-homepage">
       {/* 1. PRISM SIGN: Majestic Glowing Prismatic Optical Core + Chromatic Title */}
-      <div className="prism-sign-container" title="PRISM Search Engine">
+      <MotionFloat distance={8} duration={4.5}>
+        <div className="prism-sign-container" title="PRISM Search Engine">
         <div className="prism-optical-monolith">
           <svg viewBox="0 0 120 120" className="prism-svg-core">
             <defs>
@@ -104,119 +106,126 @@ export default function SpeedDial({
           </div>
         </div>
       </div>
+    </MotionFloat>
 
       {/* 2. SEARCH TOOL BAR: Holographic Omnibar with Autocomplete & Direct Search */}
-      <div className="masterpiece-search-container clean-search-container">
-        <div className="conic-glow-border" />
-        <div className="search-inner-wrapper">
-          <SearchBar
-            onSearch={handleSearchSubmit}
-            placeholder="Search with PRISM or launch apps (e.g. maps, tube, mail)..."
-          />
+      <MotionFadeIn direction="up" delay={0.12} duration={0.5}>
+        <div className="masterpiece-search-container clean-search-container">
+          <div className="conic-glow-border" />
+          <div className="search-inner-wrapper">
+            <SearchBar
+              onSearch={handleSearchSubmit}
+              placeholder="Search with PRISM or launch apps (e.g. maps, tube, mail)..."
+            />
+          </div>
         </div>
-      </div>
 
-      {/* Quick 1-Click Trending Search Chips Above The Fold */}
-      <div className="hero-quick-chips">
-        <span className="quick-chips-label">Try instant search:</span>
-        <button
-          type="button"
-          className="quick-chip-btn"
-          onClick={() => handleSearchSubmit('Quantum Computing 2026')}
-        >
-          <span>🔬 Quantum Computing 2026</span>
-        </button>
-        <button
-          type="button"
-          className="quick-chip-btn"
-          onClick={() => handleSearchSubmit('Next.js vs Vite Performance')}
-        >
-          <span>⚡ Next.js vs Vite</span>
-        </button>
-        <button
-          type="button"
-          className="quick-chip-btn"
-          onClick={() => handleSearchSubmit('Mars Rover Discoveries')}
-        >
-          <span>🪐 Mars Discoveries</span>
-        </button>
-      </div>
-
-      {/* 3. INSTALL & SIGN IN: Prominent Clean Action Triggers Above The Fold */}
-      <div className="homepage-actions-row">
-        <button
-          type="button"
-          className="btn-homepage-primary-cta"
-          onClick={() => handleSearchSubmit('AI Reasoning Models Comparison')}
-          title="Try Instant AI Search Synthesis"
-          id="homepage-try-ai-btn"
-        >
-          <span>✨ Try AI Synthesis</span>
-          <span className="cta-arrow">→</span>
-        </button>
-
-        <button
-          type="button"
-          className="btn-homepage-install"
-          onClick={onOpenInstall}
-          title="Install PRISM on Desktop, Android or iOS"
-          id="homepage-install-btn"
-        >
-          <Download size={15} />
-          <span>Install PRISM App</span>
-          <span className="install-badge-pwa">Free</span>
-        </button>
-
-        {!currentUser ? (
+        {/* Quick 1-Click Trending Search Chips Above The Fold */}
+        <div className="hero-quick-chips">
+          <span className="quick-chips-label">Try instant search:</span>
           <button
             type="button"
-            className="btn-homepage-sign"
-            onClick={onOpenAuthModal}
-            title="Sign In or Create Account"
-            id="homepage-signin-btn"
+            className="quick-chip-btn"
+            onClick={() => handleSearchSubmit('Quantum Computing 2026')}
           >
-            <User size={14} />
-            <span>Sign In</span>
+            <span>🔬 Quantum Computing 2026</span>
           </button>
-        ) : (
-          <div className="homepage-user-status">
-            <span className="user-dot-active" />
-            <span>Signed in as <strong>{currentUser.username || currentUser.email}</strong></span>
-          </div>
-        )}
-      </div>
+          <button
+            type="button"
+            className="quick-chip-btn"
+            onClick={() => handleSearchSubmit('Next.js vs Vite Performance')}
+          >
+            <span>⚡ Next.js vs Vite</span>
+          </button>
+          <button
+            type="button"
+            className="quick-chip-btn"
+            onClick={() => handleSearchSubmit('Mars Rover Discoveries')}
+          >
+            <span>🪐 Mars Discoveries</span>
+          </button>
+        </div>
+      </MotionFadeIn>
+
+      {/* 3. INSTALL & SIGN IN: Prominent Clean Action Triggers Above The Fold */}
+      <MotionFadeIn direction="up" delay={0.2} duration={0.5}>
+        <div className="homepage-actions-row">
+          <button
+            type="button"
+            className="btn-homepage-primary-cta"
+            onClick={() => handleSearchSubmit('AI Reasoning Models Comparison')}
+            title="Try Instant AI Search Synthesis"
+            id="homepage-try-ai-btn"
+          >
+            <span>✨ Try AI Synthesis</span>
+            <span className="cta-arrow">→</span>
+          </button>
+
+          <button
+            type="button"
+            className="btn-homepage-install"
+            onClick={onOpenInstall}
+            title="Install PRISM on Desktop, Android or iOS"
+            id="homepage-install-btn"
+          >
+            <Download size={15} />
+            <span>Install PRISM App</span>
+            <span className="install-badge-pwa">Free</span>
+          </button>
+
+          {!currentUser ? (
+            <button
+              type="button"
+              className="btn-homepage-sign"
+              onClick={onOpenAuthModal}
+              title="Sign In or Create Account"
+              id="homepage-signin-btn"
+            >
+              <User size={14} />
+              <span>Sign In</span>
+            </button>
+          ) : (
+            <div className="homepage-user-status">
+              <span className="user-dot-active" />
+              <span>Signed in as <strong>{currentUser.username || currentUser.email}</strong></span>
+            </div>
+          )}
+        </div>
+      </MotionFadeIn>
 
       {/* 4. GOOGLE-STYLE APPS DOCK: Instant 1-Click Launch for PRISM Maps, Tube, Browser, Mail */}
-      <div className="homepage-apps-dock">
-        <div className="apps-dock-header">
-          <span>PRISM Google-Equivalent Apps</span>
-          <span className="apps-dock-adfree">
-            <ShieldCheck size={11} color="#10b981" />
-            <span>Ad-Free Ecosystem</span>
-          </span>
-        </div>
+      <MotionFadeIn direction="up" delay={0.28} duration={0.5}>
+        <div className="homepage-apps-dock">
+          <div className="apps-dock-header">
+            <span>PRISM Google-Equivalent Apps</span>
+            <span className="apps-dock-adfree">
+              <ShieldCheck size={11} color="#10b981" />
+              <span>Ad-Free Ecosystem</span>
+            </span>
+          </div>
 
-        <div className="apps-dock-items">
-          {ECOSYSTEM_APPS.map((app) => {
-            const Icon = app.icon;
-            return (
-              <button
-                key={app.id}
-                type="button"
-                className="app-dock-tile"
-                onClick={() => onLaunchApp && onLaunchApp(app.type)}
-                title={`Launch ${app.label}`}
-                id={`btn-launch-${app.id}`}
-              >
-                <div className="app-dock-icon-box" style={{ color: app.color, background: `${app.color}18`, borderColor: `${app.color}40` }}>
-                  <Icon size={18} />
-                </div>
-                <span className="app-dock-title">{app.name}</span>
-              </button>
-            );
-          })}
+          <div className="apps-dock-items">
+            {ECOSYSTEM_APPS.map((app) => {
+              const Icon = app.icon;
+              return (
+                <button
+                  key={app.id}
+                  type="button"
+                  className="app-dock-tile"
+                  onClick={() => onLaunchApp && onLaunchApp(app.type)}
+                  title={`Launch ${app.label}`}
+                  id={`btn-launch-${app.id}`}
+                >
+                  <div className="app-dock-icon-box" style={{ color: app.color, background: `${app.color}18`, borderColor: `${app.color}40` }}>
+                    <Icon size={18} />
+                  </div>
+                  <span className="app-dock-title">{app.name}</span>
+                </button>
+              );
+            })}
+          </div>
         </div>
-      </div>
+      </MotionFadeIn>
     </div>
   );
 }

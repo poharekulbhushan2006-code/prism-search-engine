@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import UserProfileMenu from './UserProfileMenu';
 import GoogleAppsLauncher from './GoogleAppsLauncher';
+import { RealtimeColorsTriggerButton } from './RealtimeColors';
 import {
   ArrowLeft,
   ArrowRight,
@@ -379,6 +380,9 @@ export default function BrowserChrome({
             onLaunchApp={onLaunchApp}
             onOpenWorkbench={onOpenWorkbench}
           />
+
+          {/* Realtime Colors Harmonizer */}
+          <RealtimeColorsTriggerButton />
 
           <button
             type="button"

@@ -35,6 +35,7 @@ import SiteFooter from './components/SiteFooter';
 import { RealtimeColorsProvider } from './components/RealtimeColors';
 import { HaikeiLayeredWaves, HaikeiFluidBlobs } from './components/HaikeiBackgrounds';
 import { MotionFadeIn, MotionScale } from './components/MotionPrimitives';
+import AppOpeningSplash from './components/AppOpeningSplash';
 import { updatePageMetadata } from './utils/seo';
 import { analytics } from './utils/analytics';
 import { ShieldAlert, Sparkles, Filter, Clock } from 'lucide-react';
@@ -676,6 +677,9 @@ export default function App() {
 
   return (
     <RealtimeColorsProvider>
+      {/* Cinematic Logo Opening Sequence on App Open */}
+      <AppOpeningSplash />
+
       <div className="browser-shell">
         {/* Dynamic Interactive Prism Particles Canvas */}
         <PrismBackground />

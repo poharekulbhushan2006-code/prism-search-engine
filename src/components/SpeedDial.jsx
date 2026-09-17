@@ -2,6 +2,7 @@ import React from 'react';
 import SearchBar from './SearchBar';
 import { Download, User, MapPin, Play, Mail, Globe, ShieldCheck } from 'lucide-react';
 import { MotionFloat, MotionFadeIn, MotionScale } from './MotionPrimitives';
+import PrismLogoEntry from './PrismLogoEntry';
 
 export default function SpeedDial({
   onSearch,
@@ -49,64 +50,17 @@ export default function SpeedDial({
 
   return (
     <div className="masterpiece-startpage clean-homepage">
-      {/* 1. PRISM SIGN: Majestic Glowing Prismatic Optical Core + Chromatic Title */}
-      <MotionFloat distance={8} duration={4.5}>
-        <div className="prism-sign-container" title="PRISM Search Engine">
-        <div className="prism-optical-monolith">
-          <svg viewBox="0 0 120 120" className="prism-svg-core">
-            <defs>
-              <linearGradient id="prismLightG" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#6366f1" />
-                <stop offset="50%" stopColor="#a855f7" />
-                <stop offset="75%" stopColor="#ec4899" />
-                <stop offset="100%" stopColor="#06b6d4" />
-              </linearGradient>
-              <filter id="prismGlow" x="-25%" y="-25%" width="150%" height="150%">
-                <feGaussianBlur stdDeviation="7" result="blur" />
-                <feComposite in="SourceGraphic" in2="blur" operator="over" />
-              </filter>
-            </defs>
-
-            {/* Exterior Glow Triangle */}
-            <polygon
-              points="60,16 106,98 14,98"
-              fill="none"
-              stroke="url(#prismLightG)"
-              strokeWidth="3.5"
-              filter="url(#prismGlow)"
-              className="prism-outer-ring"
-            />
-
-            {/* Internal Geometric Core */}
-            <polygon
-              points="60,30 93,90 27,90"
-              fill="url(#prismLightG)"
-              opacity="0.92"
-              className="prism-inner-core"
-            />
-
-            {/* Center Specular Core Highlight */}
-            <polygon
-              points="60,46 78,82 42,82"
-              fill="#ffffff"
-              opacity="0.45"
-            />
-          </svg>
-        </div>
-
-        <h1 className="prism-brand-title">
-          PR<span className="prism-brand-letter-i">I</span>SM
-        </h1>
-
-        {/* Item 4: Prominent CTA Above The Fold Header Banner */}
-        <div className="hero-cta-pill-wrapper">
-          <div className="hero-value-pill">
-            <span className="pill-dot" />
-            <span>⚡ 0 Ads • 100% Anti-SEO Spam Filter • Private By Default</span>
-          </div>
-        </div>
+      {/* 1. PRISM SIGN: Majestic Optical Core with Cinematic Opening Entry Animation */}
+      <div className="prism-sign-container" title="PRISM Search Engine">
+        <PrismLogoEntry
+          size="large"
+          showTitle={true}
+          showTagline={true}
+          taglineText="⚡ 0 Ads • 100% Anti-SEO Spam Filter • Private By Default"
+          autoAnimate={true}
+          interactive={true}
+        />
       </div>
-    </MotionFloat>
 
       {/* 2. SEARCH TOOL BAR: Holographic Omnibar with Autocomplete & Direct Search */}
       <MotionFadeIn direction="up" delay={0.12} duration={0.5}>

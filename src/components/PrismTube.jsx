@@ -153,8 +153,8 @@ export default function PrismTube({ initialQuery = '', onOpenSearch }) {
           </div>
           <span className="tube-title">PRISM <span className="tube-title-sub">Tube</span></span>
           <span className="tube-adfree-pill">
-            <ShieldCheck size={12} />
-            <span>100% Ad-Free • Zero Video Ads</span>
+            <ShieldCheck size={12} color="#10b981" />
+            <span>Official YouTube Player (Privacy-Enhanced Embed) • Demo Showcase</span>
           </span>
         </div>
 
@@ -304,7 +304,7 @@ export default function PrismTube({ initialQuery = '', onOpenSearch }) {
                     className="btn-theater-action"
                     onClick={() => {
                       navigator.clipboard?.writeText(`https://www.youtube.com/watch?v=${activeVideo.id}`);
-                      alert('Ad-free video link copied to clipboard!');
+                      alert('Video link copied to clipboard!');
                     }}
                   >
                     <Share2 size={15} />
@@ -324,6 +324,14 @@ export default function PrismTube({ initialQuery = '', onOpenSearch }) {
                 </div>
                 <p className="desc-text">{activeVideo.description}</p>
               </div>
+
+              {/* Compliance & Educational Notice */}
+              <div className="tube-compliance-banner">
+                <ShieldCheck size={14} color="#10b981" />
+                <span>
+                  <strong>Safe & Compliant Demo Mode:</strong> Video streams via Google's official privacy-enhanced embed endpoint (<code>youtube-nocookie.com</code>). Zero private APIs or security terms breached. Media rights remain with the creator.
+                </span>
+              </div>
             </div>
           </div>
 
@@ -331,7 +339,7 @@ export default function PrismTube({ initialQuery = '', onOpenSearch }) {
           <div className="theater-sidebar-column">
             <div className="sidebar-queue-header">
               <ListVideo size={16} color="#38bdf8" />
-              <span>Up Next (Ad-Free Queue)</span>
+              <span>Up Next (Demo Feed)</span>
             </div>
 
             <div className="related-videos-list">

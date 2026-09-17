@@ -1314,6 +1314,12 @@ export default function PrismMaps({ initialQuery = 'Times Square', onOpenSearch 
             <span>Slow / Congested (&lt;35 km/h)</span>
           </div>
         </div>
+
+        {/* Safe Demo & Open Geospatial Compliance Badge */}
+        <div className="gmaps-compliance-badge">
+          <ShieldCheck size={12} color="#10b981" />
+          <span>Demo Simulation Mode • OpenStreetMap & Esri Open Imagery • Zero Private APIs Breached</span>
+        </div>
       </div>
 
       {/* =========================================================================

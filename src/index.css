@@ -5083,6 +5083,32 @@ input {
 .legend-chip .dot.bg-orange { background: #f59e0b; }
 .legend-chip .dot.bg-red { background: #ef4444; }
 
+.gmaps-compliance-badge {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(15, 23, 42, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  border-radius: 9999px;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.68rem;
+  color: #94a3b8;
+  z-index: 1000;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .gmaps-compliance-badge {
+    display: none;
+  }
+}
+
 /* Vehicle moving dots */
 .prism-vehicle-marker-icon {
   background: transparent;
@@ -5998,6 +6024,29 @@ input {
   line-height: 1.55;
   margin: 0;
 }
+
+.tube-compliance-banner {
+  margin-top: 0.85rem;
+  padding: 0.75rem 1rem;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  border-radius: 10px;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  font-size: 0.76rem;
+  color: #a7f3d0;
+  line-height: 1.45;
+}
+
+.tube-compliance-banner code {
+  background: rgba(0, 0, 0, 0.35);
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  font-family: monospace;
+  color: #34d399;
+}
+
 
 .sidebar-queue-header {
   display: flex;

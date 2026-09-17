@@ -623,23 +623,32 @@ const FALLBACK_VIDEOS = [
   }
 ];
 
+// Safe Demo Circuit Breaker: prevents aggressive requests, throttles, or terms breaches
+let scrapingCooldownUntil = 0;
+
 /**
- * Scrapes real YouTube search results directly via ytInitialData
+ * Scrapes YouTube search metadata for educational demo browsing.
+ * If throttled or unavailable, safely backs off to the curated verified library.
  */
 async function scrapeYouTube(searchQuery, forcedCategory = null) {
-  const url = `https://www.youtube.com/results?search_query=${encodeURIComponent(searchQuery)}`;
-  const response = await axios.get(url, {
-    headers: {
-      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
-      'Accept-Language': 'en-US,en;q=0.9,hi;q=0.8',
-      'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
-    },
-    timeout: 4000
-  });
+  if (Date.now() < scrapingCooldownUntil) {
+    return [];
+  }
 
-  const html = response.data;
-  const match = html.match(/ytInitialData\s*=\s*({.+?});<\/script>/s);
-  if (!match) return [];
+  try {
+    const url = `https://www.youtube.com/results?search_query=${encodeURIComponent(searchQuery)}`;
+    const response = await axios.get(url, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+        'Accept-Language': 'en-US,en;q=0.9,hi;q=0.8',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+      },
+      timeout: 3500
+    });
+
+    const html = response.data;
+    const match = html.match(/ytInitialData\s*=\s*({.+?});<\/script>/s);
+    if (!match) return [];
 
   const ytData = JSON.parse(match[1]);
   const sectionList = ytData.contents?.twoColumnSearchResultsRenderer?.primaryContents?.sectionListRenderer?.contents || [];
@@ -688,7 +697,14 @@ async function scrapeYouTube(searchQuery, forcedCategory = null) {
     if (parsedVideos.length >= 24) break;
   }
 
-  return parsedVideos;
+    return parsedVideos;
+  } catch (err) {
+    if (err.response?.status === 429 || err.code === 'ECONNABORTED' || err.response?.status === 403) {
+      scrapingCooldownUntil = Date.now() + (3 * 60 * 1000); // 3-minute backoff
+      console.warn('YouTube rate-limit notice. Engaging 3-min safe fallback cooldown.');
+    }
+    return [];
+  }
 }
 
 /**

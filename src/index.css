@@ -7640,110 +7640,497 @@ input {
   color: #334155;
 }
 
-/* --- Item 10: Complete Mobile Breakpoints (480px, 640px, 768px, 1024px) --- */
+/* --- Item 10: Complete Mobile Breakpoints (1024px, 768px, 640px, 480px) & Display Adjustments --- */
 @media (max-width: 1024px) {
   .footer-top-grid {
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
   }
+  .tube-browse-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
 }
 
 @media (max-width: 768px) {
-  .prism-brand-title {
-    font-size: 3.2rem !important;
-  }
-  
-  .clean-search-container {
-    max-width: 100% !important;
-    padding: 0 0.5rem;
+  /* Main Canvas & Content Clearance for Bottom Dock */
+  .prism-main-canvas {
+    padding-bottom: 7.5rem !important;
   }
 
-  .thankyou-steps-grid {
-    grid-template-columns: 1fr;
+  .main-content {
+    padding: 1rem 0.75rem 7.5rem 0.75rem !important;
   }
 
-  .legal-contact-grid {
-    grid-template-columns: 1fr;
+  /* Browser Header Chrome Optimization */
+  .chrome-tab-row {
+    display: none !important;
+  }
+
+  .chrome-nav-row {
+    padding: 0.45rem 0.65rem !important;
+    gap: 0.45rem !important;
+  }
+
+  .btn-pinboard-trigger {
+    display: none !important;
+  }
+
+  .btn-install-trigger span,
+  .btn-signin-trigger span,
+  .omnibox-security span,
+  .omnibox-lens-badge span {
+    display: none !important;
+  }
+
+  .btn-install-trigger,
+  .btn-signin-trigger {
+    padding: 0.38rem 0.5rem !important;
+  }
+
+  .omnibox-security {
+    padding-right: 0.25rem !important;
+  }
+
+  .omnibox-input {
+    font-size: 0.82rem !important;
+    padding: 0.35rem 0.4rem !important;
+  }
+
+  /* Lens Bar & View Switcher swipeable carousels */
+  .controls-header {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0.65rem !important;
+    padding-bottom: 0.75rem !important;
+  }
+
+  .lens-bar,
+  .view-mode-toggle {
+    width: 100% !important;
+    overflow-x: auto !important;
+    flex-wrap: nowrap !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding: 0.3rem !important;
+    scrollbar-width: none !important;
+  }
+
+  .lens-bar::-webkit-scrollbar,
+  .view-mode-toggle::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .lens-tab,
+  .view-btn {
+    flex-shrink: 0 !important;
+    font-size: 0.78rem !important;
+    padding: 0.4rem 0.75rem !important;
+  }
+
+  /* Comparison Matrix Table */
+  .prism-comparison-card {
+    margin-bottom: 1.5rem !important;
+  }
+
+  .mobile-table-swipe-hint {
+    display: block !important;
+    font-size: 0.72rem !important;
+    color: #818cf8 !important;
+    padding: 0.38rem 0.75rem !important;
+    background: rgba(99, 102, 241, 0.12) !important;
+    border: 1px dashed rgba(99, 102, 241, 0.3) !important;
+    border-radius: 8px !important;
+    margin-bottom: 0.75rem !important;
+    text-align: center !important;
+  }
+
+  .matrix-table-scroll-container {
+    width: 100% !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    border-radius: 10px !important;
+  }
+
+  .custom-matrix-table {
+    min-width: 580px !important;
+  }
+
+  .table-filter-toolbar {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0.65rem !important;
+  }
+
+  /* Flowchart Stage Layout */
+  .flowchart-topbar {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.75rem !important;
+    padding: 1rem !important;
+  }
+
+  .flowchart-body {
+    padding: 0.85rem !important;
+  }
+
+  .flowchart-stages-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.5rem !important;
+  }
+
+  .flowchart-stage-btn {
+    width: 100% !important;
+  }
+
+  .flowchart-deepdive-box {
+    padding: 1rem !important;
+  }
+
+  /* Search Results & Cards */
+  .ai-overview-box {
+    padding: 1.25rem 1rem !important;
+    border-radius: 16px !important;
+  }
+
+  .source-rail {
+    padding-bottom: 0.5rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .result-card {
+    padding: 1.15rem 0.95rem !important;
+    border-radius: 14px !important;
+  }
+
+  .result-snippet {
+    font-size: 0.85rem !important;
+    line-height: 1.55 !important;
+  }
+
+  .perspective-split-container {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Floating Bottom Dock & Overlays */
+  .safari-mobile-dock {
+    display: flex !important;
+    bottom: 0.75rem !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: calc(100% - 1.5rem) !important;
+    max-width: 420px !important;
+    z-index: 5000 !important;
+  }
+
+  .sticky-mobile-cta-wrapper {
+    display: block !important;
+    bottom: 4.6rem !important;
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+    width: calc(100% - 1.5rem) !important;
+    max-width: 420px !important;
+    z-index: 4900 !important;
+  }
+
+  .sticky-mobile-cta-card {
+    padding: 0.4rem 0.65rem !important;
+  }
+
+  .sticky-cta-text strong {
+    font-size: 0.8rem !important;
+  }
+
+  .sticky-cta-text span {
+    font-size: 0.68rem !important;
+  }
+
+  .cookie-banner-overlay {
+    bottom: 4.8rem !important;
+    left: 0.75rem !important;
+    right: 0.75rem !important;
+    max-width: 440px !important;
+    margin: 0 auto !important;
+    z-index: 6000 !important;
+  }
+
+  .cookie-banner-card {
+    padding: 1rem 1.15rem !important;
+    border-radius: 16px !important;
   }
 
   .cookie-banner-main {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.75rem !important;
   }
 
   .cookie-banner-actions {
-    width: 100%;
-    justify-content: space-between;
+    width: 100% !important;
+    justify-content: space-between !important;
+  }
+
+  /* Ecosystem Apps Mobile Adaptation */
+  .prism-maps-container {
+    flex-direction: column !important;
+    height: auto !important;
+    min-height: calc(100vh - 80px) !important;
+  }
+
+  .maps-sidebar-drawer {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 45vh !important;
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  }
+
+  .maps-viewport-area {
+    height: 55vh !important;
+    width: 100% !important;
+  }
+
+  .prism-tube-container {
+    padding: 1rem 0.75rem 7.5rem 0.75rem !important;
+  }
+
+  .tube-header-bar {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0.75rem !important;
+  }
+
+  .tube-browse-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .prism-mail-container {
+    flex-direction: column !important;
+    height: auto !important;
+    min-height: calc(100vh - 80px) !important;
+  }
+
+  .mail-sidebar {
+    width: 100% !important;
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    padding: 0.75rem !important;
+  }
+
+  .mail-folders-list {
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    gap: 0.5rem !important;
+  }
+
+  .mail-folder-item {
+    white-space: nowrap !important;
+    padding: 0.4rem 0.75rem !important;
+  }
+
+  /* Site Footer Adaptation */
+  .prism-site-footer {
+    padding: 2.5rem 1rem 3.5rem 1rem !important;
+    margin-top: 2.5rem !important;
   }
 
   .footer-top-grid {
-    grid-template-columns: 1fr;
-    gap: 1.75rem;
+    grid-template-columns: 1fr !important;
+    gap: 1.75rem !important;
   }
 
   .footer-bottom-bar {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.85rem !important;
+  }
+
+  /* Modals & Special Pages */
+  .pinboard-drawer {
+    width: 100vw !important;
+    padding: 1.25rem 1rem !important;
+  }
+
+  .auth-modal-overlay,
+  .install-modal-overlay {
+    padding: 0.75rem !important;
+  }
+
+  .auth-modal-dialog,
+  .install-modal-dialog {
+    padding: 1.75rem 1.25rem !important;
+    border-radius: 18px !important;
   }
 
   .legal-card {
-    padding: 1.75rem 1.25rem;
+    padding: 1.75rem 1.25rem !important;
   }
 
   .legal-main-title {
-    font-size: 1.7rem;
+    font-size: 1.7rem !important;
+  }
+
+  .legal-contact-grid {
+    grid-template-columns: 1fr !important;
   }
 
   .notfound-card {
-    padding: 2rem 1.25rem;
+    padding: 2rem 1.25rem !important;
   }
 
   .notfound-title {
-    font-size: 1.5rem;
+    font-size: 1.5rem !important;
+  }
+
+  .thankyou-card {
+    padding: 2rem 1.25rem !important;
+  }
+
+  .thankyou-steps-grid {
+    grid-template-columns: 1fr !important;
   }
 }
 
 @media (max-width: 640px) {
-  .hero-quick-chips {
-    display: none; /* Hide dense chips on very small screens to preserve fold space */
+  /* Search Bar Input & Action optimization */
+  .searchbar-box {
+    padding: 0.4rem 0.6rem !important;
+    gap: 0.45rem !important;
   }
 
+  .searchbar-input {
+    font-size: 0.92rem !important;
+  }
+
+  .searchbar-actions {
+    gap: 0.35rem !important;
+  }
+
+  .searchbar-actions .kbd-badge {
+    display: none !important;
+  }
+
+  .btn-search-submit span {
+    display: none !important;
+  }
+
+  .btn-search-submit {
+    padding: 0.45rem 0.65rem !important;
+    border-radius: 9999px !important;
+  }
+
+  .clean-search-container {
+    max-width: 100% !important;
+    padding: 0 0.5rem !important;
+  }
+
+  /* Trending Chips swipeable carousel */
+  .hero-quick-chips {
+    display: flex !important;
+    overflow-x: auto !important;
+    flex-wrap: nowrap !important;
+    -webkit-overflow-scrolling: touch !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0.25rem 0.5rem 0.5rem 0.5rem !important;
+    gap: 0.4rem !important;
+    scrollbar-width: none !important;
+  }
+
+  .hero-quick-chips::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .quick-chips-label {
+    flex-shrink: 0 !important;
+    font-size: 0.72rem !important;
+  }
+
+  .quick-chip-btn {
+    flex-shrink: 0 !important;
+    font-size: 0.75rem !important;
+    padding: 0.35rem 0.65rem !important;
+  }
+
+  /* Homepage Action Buttons */
   .homepage-actions-row {
-    flex-direction: column;
-    width: 100%;
-    gap: 0.65rem;
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 0.65rem !important;
   }
 
   .btn-homepage-primary-cta,
   .btn-homepage-install,
   .btn-homepage-sign {
     width: 100% !important;
-    justify-content: center;
+    justify-content: center !important;
   }
 
+  /* Ecosystem Apps Grid */
   .apps-dock-items {
-    grid-template-columns: repeat(2, 1fr) !important;
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 0.35rem !important;
+  }
+
+  .app-dock-tile {
+    padding: 0.35rem 0.2rem !important;
+  }
+
+  .app-dock-icon-box {
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  .app-dock-title {
+    font-size: 0.68rem !important;
   }
 }
 
 @media (max-width: 480px) {
   .prism-brand-title {
-    font-size: 2.6rem !important;
+    font-size: 2.75rem !important;
+    letter-spacing: -1px !important;
+  }
+
+  .prism-svg-core {
+    width: 68px !important;
+    height: 68px !important;
   }
 
   .hero-value-pill {
-    font-size: 0.7rem;
-    padding: 0.25rem 0.75rem;
+    font-size: 0.68rem !important;
+    padding: 0.25rem 0.65rem !important;
+    text-align: center !important;
+    line-height: 1.35 !important;
+  }
+
+  .btn-chrome-nav {
+    width: 28px !important;
+    height: 28px !important;
+  }
+
+  .btn-chrome-nav:nth-child(2) {
+    display: none !important; /* Hide Forward arrow on very narrow screens */
   }
 
   .notfound-actions {
-    flex-direction: column;
-    width: 100%;
+    flex-direction: column !important;
+    width: 100% !important;
   }
 
-  .btn-notfound-primary, .btn-notfound-secondary {
-    width: 100%;
-    justify-content: center;
+  .btn-notfound-primary,
+  .btn-notfound-secondary {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  .thankyou-footer-actions {
+    width: 100% !important;
+  }
+
+  .btn-thankyou-home {
+    width: 100% !important;
+    justify-content: center !important;
   }
 }
 

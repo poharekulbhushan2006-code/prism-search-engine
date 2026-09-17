@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Sparkles, Download, X, Search, ArrowRight } from 'lucide-react';
+import { Sparkles, Download, X } from 'lucide-react';
 
 export default function StickyMobileCTA({ onOpenInstall, onFocusSearch }) {
-  const [isDismissed, setIsDismissed] = useState(false);
+  const [isDismissed, setIsDismissed] = useState(() => {
+    try {
+      return sessionStorage.getItem('prism_mobile_cta_dismissed') === '1';
+    } catch {
+      return false;
+    }
+  });
   const [isMobile, setIsMobile] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -14,7 +21,27 @@ export default function StickyMobileCTA({ onOpenInstall, onFocusSearch }) {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  if (!isMobile || isDismissed) return null;
+  useEffect(() => {
+    if (!isMobile) return;
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 180);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isMobile]);
+
+  const handleDismiss = (e) => {
+    e.stopPropagation();
+    setIsDismissed(true);
+    try {
+      sessionStorage.setItem('prism_mobile_cta_dismissed', '1');
+    } catch {
+      // ignore
+    }
+  };
+
+  // Only render when on mobile, user has scrolled past top fold, and not dismissed
+  if (!isMobile || !isScrolled || isDismissed) return null;
 
   return (
     <div className="sticky-mobile-cta-wrapper">
@@ -22,19 +49,20 @@ export default function StickyMobileCTA({ onOpenInstall, onFocusSearch }) {
         <button
           type="button"
           className="sticky-cta-dismiss"
-          onClick={() => setIsDismissed(true)}
+          onClick={handleDismiss}
           aria-label="Dismiss banner"
+          title="Dismiss"
         >
-          <X size={14} />
+          <X size={13} />
         </button>
 
         <div className="sticky-cta-content" onClick={onOpenInstall}>
           <div className="sticky-cta-icon-box">
-            <Sparkles size={16} color="#6366f1" />
+            <Sparkles size={15} color="#6366f1" />
           </div>
           <div className="sticky-cta-text">
             <strong>Install PRISM App</strong>
-            <span>Zero ads • 0.1s anti-SEO search</span>
+            <span>0 Ads • 0.1s anti-SEO search</span>
           </div>
         </div>
 
@@ -44,7 +72,7 @@ export default function StickyMobileCTA({ onOpenInstall, onFocusSearch }) {
           onClick={onOpenInstall}
           id="btn-sticky-mobile-install"
         >
-          <Download size={14} />
+          <Download size={13} />
           <span>Get App</span>
         </button>
       </div>

@@ -161,7 +161,10 @@ export default function AnimatedComparisonTable({ comparisonTable, query }) {
       </div>
 
       {/* 3. Table Element */}
-      <div style={{ overflowX: 'auto' }}>
+      <div className="mobile-table-swipe-hint">
+        <span>⇄ Swipe table horizontally to explore all parameters</span>
+      </div>
+      <div className="matrix-table-scroll-container" style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
         <table className="custom-matrix-table">
           <thead>
             <tr>

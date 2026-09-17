@@ -706,7 +706,7 @@ export default function App() {
         onLaunchApp={handleLaunchApp}
       />
       {/* 2. Active Tab Content Canvas */}
-      <main style={{ flex: 1, position: 'relative' }}>
+      <main style={{ flex: 1, position: 'relative' }} className="prism-main-canvas">
         <ErrorBoundary key={activeTabId} onReset={() => handleGoHome()}>
           {/* VIEW A: PRISM Clean Minimalist Start Page */}
           {activeTab.type === 'home' && (

@@ -113,7 +113,7 @@ export default function AnimatedFlowchart({ flowchart, query }) {
                   <div style={{ fontSize: '0.68rem', fontWeight: '700', textTransform: 'uppercase', color: '#94a3b8' }}>
                     {stg.stage || `Stage ${idx + 1}`}
                   </div>
-                  <div style={{ fontSize: '0.8rem', fontWeight: '600', color: isActive ? '#fff' : '#e2e8f0', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                  <div style={{ fontSize: '0.82rem', fontWeight: '600', color: isActive ? '#fff' : '#e2e8f0', overflowWrap: 'break-word', wordBreak: 'break-word', lineHeight: 1.35 }}>
                     {stg.title}
                   </div>
                 </div>

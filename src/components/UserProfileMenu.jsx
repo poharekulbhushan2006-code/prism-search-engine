@@ -43,7 +43,13 @@ export default function UserProfileMenu({ user, onLogout, onOpenWorkbench, searc
         title={`${user?.name || 'User'} (${user?.tier || 'Free Tier'})`}
       >
         {user?.avatarUrl ? (
-          <img src={user.avatarUrl} alt={user.name} className="user-avatar-img" />
+          <img
+            src={user.avatarUrl}
+            alt={user.name ? `${user.name}'s profile avatar` : 'User profile avatar'}
+            className="user-avatar-img"
+            loading="lazy"
+            decoding="async"
+          />
         ) : (
           <div className="user-initials-badge">{initials}</div>
         )}

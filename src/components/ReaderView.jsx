@@ -87,8 +87,10 @@ export default function ReaderView({ pageData, onPinItem, isPinned }) {
       {pageData.leadImage && (
         <img
           src={pageData.leadImage}
-          alt={pageData.title}
+          alt={pageData.title ? `Lead article illustration for ${pageData.title}` : 'Article lead illustration'}
           className="reader-lead-image"
+          loading="lazy"
+          decoding="async"
           onError={(e) => { e.target.style.display = 'none'; }}
         />
       )}

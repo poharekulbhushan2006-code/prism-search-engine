@@ -390,6 +390,22 @@ app.get('/sw.js', (req, res) => {
   res.sendFile(filePath);
 });
 
+app.get('/robots.txt', (req, res) => {
+  res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+  const filePath = fs.existsSync(path.join(__dirname, '../dist/robots.txt'))
+    ? path.join(__dirname, '../dist/robots.txt')
+    : path.join(__dirname, '../public/robots.txt');
+  res.sendFile(filePath);
+});
+
+app.get('/sitemap.xml', (req, res) => {
+  res.setHeader('Content-Type', 'application/xml; charset=utf-8');
+  const filePath = fs.existsSync(path.join(__dirname, '../dist/sitemap.xml'))
+    ? path.join(__dirname, '../dist/sitemap.xml')
+    : path.join(__dirname, '../public/sitemap.xml');
+  res.sendFile(filePath);
+});
+
 app.get('/.well-known/assetlinks.json', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
   const filePath = fs.existsSync(path.join(__dirname, '../dist/.well-known/assetlinks.json'))

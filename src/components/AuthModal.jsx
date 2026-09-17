@@ -9,26 +9,60 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }) {
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [fieldErrors, setFieldErrors] = useState({});
+  const [isShaking, setIsShaking] = useState(false);
 
   if (!isOpen) return null;
+
+  const validateForm = () => {
+    const errs = {};
+    if (mode === 'signup' && !name.trim()) {
+      errs.name = 'Please provide your full name.';
+    }
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email.trim()) {
+      errs.email = 'Email address is required.';
+    } else if (!emailPattern.test(email.trim())) {
+      errs.email = 'Please enter a valid email address (e.g. name@domain.com).';
+    }
+
+    if (!password) {
+      errs.password = 'Password is required.';
+    } else if (password.length < 6) {
+      errs.password = 'Password must contain at least 6 characters.';
+    }
+
+    setFieldErrors(errs);
+    return Object.keys(errs).length === 0;
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
+
+    if (!validateForm()) {
+      setIsShaking(true);
+      setTimeout(() => setIsShaking(false), 500);
+      return;
+    }
+
     setIsLoading(true);
 
     try {
       if (mode === 'signup') {
-        const res = await axios.post('/api/auth/signup', { name, email, password });
+        const res = await axios.post('/api/auth/signup', { name: name.trim(), email: email.trim(), password });
         onAuthSuccess(res.data.user, res.data.token);
         onClose();
       } else {
-        const res = await axios.post('/api/auth/login', { email, password });
+        const res = await axios.post('/api/auth/login', { email: email.trim(), password });
         onAuthSuccess(res.data.user, res.data.token);
         onClose();
       }
     } catch (err) {
       setError(err.response?.data?.error || 'Authentication failed. Please check credentials.');
+      setIsShaking(true);
+      setTimeout(() => setIsShaking(false), 500);
     } finally {
       setIsLoading(false);
     }
@@ -76,7 +110,7 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }) {
 
   return (
     <div className="auth-modal-overlay" onClick={onClose}>
-      <div className="auth-modal-dialog" onClick={(e) => e.stopPropagation()}>
+      <div className={`auth-modal-dialog ${isShaking ? 'modal-shake-error' : ''}`} onClick={(e) => e.stopPropagation()}>
         {/* Close Button */}
         <button type="button" className="auth-close-btn" onClick={onClose}>
           <X size={18} />
@@ -102,14 +136,14 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }) {
           <button
             type="button"
             className={`auth-tab-btn ${mode === 'signin' ? 'active' : ''}`}
-            onClick={() => { setMode('signin'); setError(null); }}
+            onClick={() => { setMode('signin'); setError(null); setFieldErrors({}); }}
           >
             Sign In
           </button>
           <button
             type="button"
             className={`auth-tab-btn ${mode === 'signup' ? 'active' : ''}`}
-            onClick={() => { setMode('signup'); setError(null); }}
+            onClick={() => { setMode('signup'); setError(null); setFieldErrors({}); }}
           >
             Create Account
           </button>
@@ -143,59 +177,89 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }) {
 
         {/* Error Alert */}
         {error && (
-          <div className="auth-error-box">
+          <div className="auth-error-box" role="alert">
             <AlertCircle size={15} />
             <span>{error}</span>
           </div>
         )}
 
         {/* Auth Form */}
-        <form onSubmit={handleSubmit} className="auth-form">
+        <form onSubmit={handleSubmit} className="auth-form" noValidate>
           {mode === 'signup' && (
             <div className="auth-field-group">
               <label className="auth-label">Full Name</label>
-              <div className="auth-input-wrapper">
+              <div className={`auth-input-wrapper ${fieldErrors.name ? 'has-error' : ''}`}>
                 <User size={15} className="auth-field-icon" />
                 <input
                   type="text"
                   className="auth-input"
                   placeholder="e.g. Alex Vance"
                   value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  onChange={(e) => {
+                    setName(e.target.value);
+                    if (fieldErrors.name) setFieldErrors({ ...fieldErrors, name: null });
+                  }}
+                  aria-invalid={!!fieldErrors.name}
                   required
                 />
               </div>
+              {fieldErrors.name && (
+                <div className="auth-field-error-msg">
+                  <AlertCircle size={12} />
+                  <span>{fieldErrors.name}</span>
+                </div>
+              )}
             </div>
           )}
 
           <div className="auth-field-group">
             <label className="auth-label">Email Address</label>
-            <div className="auth-input-wrapper">
+            <div className={`auth-input-wrapper ${fieldErrors.email ? 'has-error' : ''}`}>
               <Mail size={15} className="auth-field-icon" />
               <input
                 type="email"
                 className="auth-input"
                 placeholder="name@domain.com"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  if (fieldErrors.email) setFieldErrors({ ...fieldErrors, email: null });
+                }}
+                aria-invalid={!!fieldErrors.email}
                 required
               />
             </div>
+            {fieldErrors.email && (
+              <div className="auth-field-error-msg">
+                <AlertCircle size={12} />
+                <span>{fieldErrors.email}</span>
+              </div>
+            )}
           </div>
 
           <div className="auth-field-group">
             <label className="auth-label">Password</label>
-            <div className="auth-input-wrapper">
+            <div className={`auth-input-wrapper ${fieldErrors.password ? 'has-error' : ''}`}>
               <Lock size={15} className="auth-field-icon" />
               <input
                 type="password"
                 className="auth-input"
                 placeholder="••••••••••••"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  if (fieldErrors.password) setFieldErrors({ ...fieldErrors, password: null });
+                }}
+                aria-invalid={!!fieldErrors.password}
                 required
               />
             </div>
+            {fieldErrors.password && (
+              <div className="auth-field-error-msg">
+                <AlertCircle size={12} />
+                <span>{fieldErrors.password}</span>
+              </div>
+            )}
           </div>
 
           <button

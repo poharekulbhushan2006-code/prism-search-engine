@@ -47,7 +47,13 @@ export default function GoogleKnowledgePanel({ cardData, onSearchQuery }) {
       <div className="gk-hero-section">
         {image && (
           <div className="gk-image-wrapper">
-            <img src={image} alt={title} className="gk-image" />
+            <img
+              src={image}
+              alt={title ? `Portrait or emblem of ${title}` : 'Knowledge panel portrait'}
+              className="gk-image"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
         )}
         <div className="gk-entity-meta">

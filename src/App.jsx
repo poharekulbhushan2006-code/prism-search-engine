@@ -24,20 +24,130 @@ import SafariBottomBar from './components/SafariBottomBar';
 import PrismMaps from './components/PrismMaps';
 import PrismTube from './components/PrismTube';
 import PrismMail from './components/PrismMail';
+import NotFoundPage from './components/NotFoundPage';
+import ThankYouPage from './components/ThankYouPage';
+import PrivacyPolicyPage from './components/PrivacyPolicyPage';
+import TermsPage from './components/TermsPage';
+import CookieBanner from './components/CookieBanner';
+import StickyMobileCTA from './components/StickyMobileCTA';
+import ResultsSkeleton from './components/ResultsSkeleton';
+import SiteFooter from './components/SiteFooter';
+import { updatePageMetadata } from './utils/seo';
+import { analytics } from './utils/analytics';
 import { ShieldAlert, Sparkles, Filter, Clock } from 'lucide-react';
 
 const INITIAL_TAB = {
   id: 'tab-init',
   title: 'PRISM Browser',
   url: '',
-  type: 'home', // 'home' | 'search' | 'reader'
+  type: 'home', // 'home' | 'search' | 'reader' | 'privacy' | 'terms' | 'thank-you' | '404'
   data: null,
   history: [{ type: 'home', url: '', title: 'PRISM Browser' }],
   historyIndex: 0
 };
 
+function getInitialTabFromLocation() {
+  if (typeof window === 'undefined') return INITIAL_TAB;
+
+  const path = window.location.pathname.toLowerCase();
+  const searchParams = new URLSearchParams(window.location.search);
+  const q = searchParams.get('q');
+
+  if (q) {
+    return {
+      id: 'tab-init',
+      title: `${q} — PRISM Search`,
+      url: q,
+      type: 'search',
+      data: null,
+      history: [{ type: 'search', url: q, title: `${q} — PRISM Search` }],
+      historyIndex: 0
+    };
+  }
+
+  if (path === '/' || path === '') {
+    return INITIAL_TAB;
+  }
+  if (path === '/privacy') {
+    return {
+      id: 'tab-init',
+      title: 'Privacy Policy',
+      url: 'prism://privacy',
+      type: 'privacy',
+      data: null,
+      history: [{ type: 'privacy', url: 'prism://privacy', title: 'Privacy Policy' }],
+      historyIndex: 0
+    };
+  }
+  if (path === '/terms') {
+    return {
+      id: 'tab-init',
+      title: 'Terms and Conditions',
+      url: 'prism://terms',
+      type: 'terms',
+      data: null,
+      history: [{ type: 'terms', url: 'prism://terms', title: 'Terms and Conditions' }],
+      historyIndex: 0
+    };
+  }
+  if (path === '/thank-you') {
+    return {
+      id: 'tab-init',
+      title: 'Thank You',
+      url: 'prism://thank-you',
+      type: 'thank-you',
+      data: null,
+      history: [{ type: 'thank-you', url: 'prism://thank-you', title: 'Thank You' }],
+      historyIndex: 0
+    };
+  }
+  if (path === '/maps') {
+    return {
+      id: 'tab-init',
+      title: 'PRISM Maps',
+      url: 'Tokyo',
+      type: 'maps',
+      data: null,
+      history: [{ type: 'maps', url: 'Tokyo', title: 'PRISM Maps' }],
+      historyIndex: 0
+    };
+  }
+  if (path === '/tube') {
+    return {
+      id: 'tab-init',
+      title: 'PRISM Tube',
+      url: '',
+      type: 'tube',
+      data: null,
+      history: [{ type: 'tube', url: '', title: 'PRISM Tube' }],
+      historyIndex: 0
+    };
+  }
+  if (path === '/mail') {
+    return {
+      id: 'tab-init',
+      title: 'PRISM Mail',
+      url: 'prism://mail',
+      type: 'mail',
+      data: null,
+      history: [{ type: 'mail', url: 'prism://mail', title: 'PRISM Mail' }],
+      historyIndex: 0
+    };
+  }
+  // Unknown route -> 404
+  return {
+    id: 'tab-init',
+    title: '404 Page Not Found',
+    url: 'prism://404',
+    type: '404',
+    data: null,
+    history: [{ type: '404', url: 'prism://404', title: '404 Page Not Found' }],
+    historyIndex: 0
+  };
+}
+
 export default function App() {
-  const [tabs, setTabs] = useState([INITIAL_TAB]);
+  const [tabs, setTabs] = useState(() => [getInitialTabFromLocation()]);
   const [activeTabId, setActiveTabId] = useState('tab-init');
   const [currentLens, setCurrentLens] = useState(() => {
     try {
@@ -158,10 +268,118 @@ export default function App() {
     setActiveTabId(newTab.id);
   };
 
+  // 0a. Execute initial search if ?q= was provided on load
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    const initialQ = searchParams.get('q');
+    if (initialQ) {
+      executeSearchInTab(initialQ, currentLens);
+    }
+  }, []);
+
+  // 0b. Synchronize document title, meta descriptions, Open Graph tags & URL (Items 2, 3, 18)
+  useEffect(() => {
+    if (!activeTab) return;
+
+    let path = '/';
+    let dynamicParam = '';
+
+    if (activeTab.type === 'home') {
+      path = '/';
+    } else if (activeTab.type === 'search') {
+      path = `/search?q=${encodeURIComponent(activeTab.url || '')}`;
+      dynamicParam = activeTab.url || '';
+    } else if (activeTab.type === 'reader') {
+      path = '/reader';
+      dynamicParam = activeTab.data?.title || activeTab.url || '';
+    } else if (activeTab.type === 'privacy') {
+      path = '/privacy';
+    } else if (activeTab.type === 'terms') {
+      path = '/terms';
+    } else if (activeTab.type === 'thank-you') {
+      path = '/thank-you';
+    } else if (activeTab.type === '404') {
+      path = '/404';
+    } else if (activeTab.type === 'maps') {
+      path = '/maps';
+    } else if (activeTab.type === 'tube') {
+      path = '/tube';
+    } else if (activeTab.type === 'mail') {
+      path = '/mail';
+    }
+
+    if (window.location.pathname + window.location.search !== path) {
+      window.history.pushState({ tabId: activeTab.id, type: activeTab.type }, '', path);
+    }
+
+    updatePageMetadata(activeTab.type, dynamicParam);
+    analytics.trackPageView(path);
+  }, [activeTabId, activeTab?.type, activeTab?.url, activeTab?.data?.title]);
+
+  // 0c. Listen to browser Back/Forward (popstate)
+  useEffect(() => {
+    const handlePopState = () => {
+      const initTab = getInitialTabFromLocation();
+      setTabs((prev) => {
+        const found = prev.find((t) => t.type === initTab.type);
+        if (found) {
+          setActiveTabId(found.id);
+          return prev;
+        } else {
+          return [...prev, initTab];
+        }
+      });
+      if (initTab.type === 'search' && initTab.url) {
+        executeSearchInTab(initTab.url, currentLens);
+      }
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, [currentLens]);
+
+  // 0d. Page Navigation Helper (for Footer, Omnibox, Buttons)
+  const handleNavigatePage = (pageType) => {
+    let title = 'PRISM';
+    let url = `prism://${pageType}`;
+
+    if (pageType === 'privacy') {
+      title = 'Privacy Policy';
+    } else if (pageType === 'terms') {
+      title = 'Terms and Conditions';
+    } else if (pageType === 'thank-you') {
+      title = 'Thank You';
+    } else if (pageType === '404') {
+      title = '404 Page Not Found';
+    } else if (pageType === 'home') {
+      handleGoHome();
+      return;
+    }
+
+    const existing = tabs.find((t) => t.type === pageType);
+    if (existing) {
+      setActiveTabId(existing.id);
+      return;
+    }
+
+    const newTab = {
+      id: `tab-${Date.now()}`,
+      title,
+      url,
+      type: pageType,
+      data: null,
+      history: [{ type: pageType, url, title }],
+      historyIndex: 0
+    };
+
+    setTabs((prev) => [...prev, newTab]);
+    setActiveTabId(newTab.id);
+  };
+
   useEffect(() => {
     window.__prismSearch = (q, l) => executeSearchInTab(q, l || currentLens);
     window.__prismOpenInstall = () => setIsInstallModalOpen(true);
     window.__prismLaunchApp = (type, q) => handleLaunchApp(type, q);
+    window.__prismNavigatePage = (page) => handleNavigatePage(page);
   }, [activeTabId, currentLens]);
 
   // 1. Omnibox Submit Handler: Detects App Commands vs URL vs Search Query
@@ -170,6 +388,22 @@ export default function App() {
     if (!trimmed) return;
 
     const lower = trimmed.toLowerCase();
+    if (lower === 'privacy' || lower === 'privacy policy') {
+      handleNavigatePage('privacy');
+      return;
+    }
+    if (lower === 'terms' || lower === 'terms and conditions') {
+      handleNavigatePage('terms');
+      return;
+    }
+    if (lower === 'thank you' || lower === 'thank-you' || lower === 'thanks') {
+      handleNavigatePage('thank-you');
+      return;
+    }
+    if (lower === '404' || lower === 'not found') {
+      handleNavigatePage('404');
+      return;
+    }
     if (lower.startsWith('maps') || lower.startsWith('map ')) {
       const loc = trimmed.replace(/^maps?\s*/i, '');
       handleLaunchApp('maps', loc || 'Tokyo');
@@ -518,8 +752,41 @@ export default function App() {
             />
           )}
 
+          {/* VIEW G: Privacy Policy & Zero-Telemetry Charter (Item 15) */}
+          {activeTab.type === 'privacy' && (
+            <PrivacyPolicyPage onGoHome={handleGoHome} />
+          )}
+
+          {/* VIEW H: Terms and Conditions Agreement (Item 16) */}
+          {activeTab.type === 'terms' && (
+            <TermsPage onGoHome={handleGoHome} />
+          )}
+
+          {/* VIEW I: Thank You & Onboarding Page (Item 14) */}
+          {activeTab.type === 'thank-you' && (
+            <ThankYouPage
+              onGoHome={handleGoHome}
+              onOpenInstall={() => setIsInstallModalOpen(true)}
+              onSearch={(q) => executeSearchInTab(q, currentLens)}
+            />
+          )}
+
+          {/* VIEW J: Custom 404 Disconnected Spectrum Page (Item 1) */}
+          {activeTab.type === '404' && (
+            <NotFoundPage
+              onGoHome={handleGoHome}
+              onSearch={(q) => executeSearchInTab(q, currentLens)}
+              onLaunchApp={handleLaunchApp}
+            />
+          )}
+
+          {/* SKELETON LOADING STATE (Item 12) */}
+          {activeTab.type === 'search' && isLoading && (
+            <ResultsSkeleton query={activeTab.url} />
+          )}
+
           {/* VIEW C: PRISM Multi-Lens Search Results */}
-          {activeTab.type === 'search' && activeTab.data && (
+          {activeTab.type === 'search' && activeTab.data && !isLoading && (
             <div className="main-content">
               {/* Top Source Transparency Rail */}
               <SourceRail
@@ -721,6 +988,15 @@ export default function App() {
             </div>
           )}
         </ErrorBoundary>
+
+        {/* Site-Wide Footer with Real Corporate Contact Address (Items 15, 16, 19) */}
+        <SiteFooter
+          onNavigatePage={handleNavigatePage}
+          onOpenCookies={() => {
+            if (window.__prismOpenCookies) window.__prismOpenCookies();
+          }}
+          onLaunchApp={handleLaunchApp}
+        />
       </main>
 
       {/* 3. Slide-out Research Workbench Drawer */}
@@ -763,6 +1039,21 @@ export default function App() {
         onClose={() => setIsInstallModalOpen(false)}
         deferredPrompt={deferredPrompt}
         onInstallSuccess={() => setDeferredPrompt(null)}
+      />
+
+      {/* 7. Mobile Sticky Floating CTA Bar (Item 11) */}
+      <StickyMobileCTA
+        onOpenInstall={() => setIsInstallModalOpen(true)}
+        onFocusSearch={() => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          const omni = document.querySelector('.browser-omnibox-input') || document.querySelector('.search-input');
+          if (omni) omni.focus();
+        }}
+      />
+
+      {/* 8. GDPR & ePrivacy Cookie Consent Banner (Item 17) */}
+      <CookieBanner
+        onOpenPrivacy={() => handleNavigatePage('privacy')}
       />
     </div>
   );

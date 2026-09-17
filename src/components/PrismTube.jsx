@@ -263,7 +263,13 @@ export default function PrismTube({ initialQuery = '', onOpenSearch }) {
 
               <div className="theater-author-row">
                 <div className="channel-info">
-                  <img src={activeVideo.channelAvatar} alt={activeVideo.channel} className="channel-avatar" />
+                  <img
+                    src={activeVideo.channelAvatar}
+                    alt={activeVideo.channel ? `${activeVideo.channel} channel avatar` : 'Channel avatar'}
+                    className="channel-avatar"
+                    loading="lazy"
+                    decoding="async"
+                  />
                   <div>
                     <div className="channel-name-wrap">
                       <span className="channel-name">{activeVideo.channel}</span>
@@ -339,7 +345,13 @@ export default function PrismTube({ initialQuery = '', onOpenSearch }) {
                   }}
                 >
                   <div className="related-thumb-wrap">
-                    <img src={video.thumbnail} alt={video.title} className="related-thumb" />
+                    <img
+                      src={video.thumbnail}
+                      alt={video.title ? `Thumbnail preview for ${video.title}` : 'Video thumbnail'}
+                      className="related-thumb"
+                      loading="lazy"
+                      decoding="async"
+                    />
                     <span className="video-duration">{video.duration}</span>
                   </div>
                   <div className="related-meta">
@@ -363,7 +375,13 @@ export default function PrismTube({ initialQuery = '', onOpenSearch }) {
             >
               {/* Thumbnail Container */}
               <div className="video-thumb-container">
-                <img src={video.thumbnail} alt={video.title} className="video-thumb-img" loading="lazy" />
+                <img
+                  src={video.thumbnail}
+                  alt={video.title ? `Thumbnail preview for ${video.title}` : 'Video thumbnail'}
+                  className="video-thumb-img"
+                  loading="lazy"
+                  decoding="async"
+                />
                 <span className="video-duration">{video.duration}</span>
                 <div className="video-play-overlay">
                   <div className="play-button-circle">
@@ -374,7 +392,13 @@ export default function PrismTube({ initialQuery = '', onOpenSearch }) {
 
               {/* Video Info */}
               <div className="video-card-body">
-                <img src={video.channelAvatar} alt={video.channel} className="video-channel-avatar" />
+                <img
+                  src={video.channelAvatar}
+                  alt={video.channel ? `${video.channel} channel avatar` : 'Channel avatar'}
+                  className="video-channel-avatar"
+                  loading="lazy"
+                  decoding="async"
+                />
                 <div className="video-card-info">
                   <h3 className="video-card-title" title={video.title}>{video.title}</h3>
                   <div className="video-card-channel">

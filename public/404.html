@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 — Frequency Lost | PRISM Search</title>
+  <meta name="description" content="The page or search vector you requested could not be located on PRISM." />
+  <link rel="icon" type="image/svg+xml" href="/icons/prism-icon.svg" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="stylesheet" href="/src/index.css" />
+  <style>
+    body {
+      margin: 0;
+      background: #070b14;
+      color: #f8fafc;
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 1.5rem;
+      box-sizing: border-box;
+      overflow-x: hidden;
+    }
+    .fallback-404-card {
+      max-width: 580px;
+      padding: 3rem 2rem;
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 40px rgba(99, 102, 241, 0.15);
+    }
+    .code-404 {
+      font-size: 5.5rem;
+      font-weight: 800;
+      margin: 0;
+      line-height: 1;
+      background: linear-gradient(135deg, #6366f1 0%, #ec4899 50%, #06b6d4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -2px;
+    }
+    h1 {
+      font-size: 1.6rem;
+      margin: 1rem 0 0.5rem;
+      color: #f1f5f9;
+    }
+    p {
+      color: #94a3b8;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+    .btn-return {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      color: #ffffff;
+      padding: 0.85rem 1.75rem;
+      border-radius: 9999px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-return:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 30px -5px rgba(99, 102, 241, 0.6);
+    }
+  </style>
+</head>
+<body>
+  <div class="fallback-404-card">
+    <div class="code-404">404</div>
+    <h1>Frequency Lost in the Prism</h1>
+    <p>The vector coordinate you navigated to doesn't resolve to an indexed spectrum. Return home to re-calibrate your search trajectory.</p>
+    <a href="/" class="btn-return">
+      <span>Return to PRISM Search</span>
+      <span>→</span>
+    </a>
+  </div>
+</body>
+</html>

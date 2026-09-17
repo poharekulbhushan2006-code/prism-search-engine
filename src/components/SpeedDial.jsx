@@ -95,6 +95,14 @@ export default function SpeedDial({
         <h1 className="prism-brand-title">
           PR<span className="prism-brand-letter-i">I</span>SM
         </h1>
+
+        {/* Item 4: Prominent CTA Above The Fold Header Banner */}
+        <div className="hero-cta-pill-wrapper">
+          <div className="hero-value-pill">
+            <span className="pill-dot" />
+            <span>⚡ 0 Ads • 100% Anti-SEO Spam Filter • Private By Default</span>
+          </div>
+        </div>
       </div>
 
       {/* 2. SEARCH TOOL BAR: Holographic Omnibar with Autocomplete & Direct Search */}
@@ -108,8 +116,45 @@ export default function SpeedDial({
         </div>
       </div>
 
-      {/* 3. INSTALL & SIGN IN: Prominent Clean Action Triggers */}
+      {/* Quick 1-Click Trending Search Chips Above The Fold */}
+      <div className="hero-quick-chips">
+        <span className="quick-chips-label">Try instant search:</span>
+        <button
+          type="button"
+          className="quick-chip-btn"
+          onClick={() => handleSearchSubmit('Quantum Computing 2026')}
+        >
+          <span>🔬 Quantum Computing 2026</span>
+        </button>
+        <button
+          type="button"
+          className="quick-chip-btn"
+          onClick={() => handleSearchSubmit('Next.js vs Vite Performance')}
+        >
+          <span>⚡ Next.js vs Vite</span>
+        </button>
+        <button
+          type="button"
+          className="quick-chip-btn"
+          onClick={() => handleSearchSubmit('Mars Rover Discoveries')}
+        >
+          <span>🪐 Mars Discoveries</span>
+        </button>
+      </div>
+
+      {/* 3. INSTALL & SIGN IN: Prominent Clean Action Triggers Above The Fold */}
       <div className="homepage-actions-row">
+        <button
+          type="button"
+          className="btn-homepage-primary-cta"
+          onClick={() => handleSearchSubmit('AI Reasoning Models Comparison')}
+          title="Try Instant AI Search Synthesis"
+          id="homepage-try-ai-btn"
+        >
+          <span>✨ Try AI Synthesis</span>
+          <span className="cta-arrow">→</span>
+        </button>
+
         <button
           type="button"
           className="btn-homepage-install"
@@ -119,7 +164,7 @@ export default function SpeedDial({
         >
           <Download size={15} />
           <span>Install PRISM App</span>
-          <span className="install-badge-pwa">Install</span>
+          <span className="install-badge-pwa">Free</span>
         </button>
 
         {!currentUser ? (

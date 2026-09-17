@@ -1,0 +1,21 @@
+# PRISM Production Robots Configuration
+# https://prism-search.vercel.app
+
+User-agent: *
+Allow: /
+Allow: /search
+Allow: /privacy
+Allow: /terms
+Allow: /thank-you
+Allow: /maps
+Allow: /tube
+Allow: /mail
+
+# Protect internal APIs and system paths
+Disallow: /api/
+Disallow: /_/
+Disallow: /.well-known/
+
+# Sitemap location
+Sitemap: https://prism-search.vercel.app/sitemap.xml
+Host: https://prism-search.vercel.app

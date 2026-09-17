@@ -18,8 +18,10 @@ export default function QuickDossier({ dossier, metrics, onSelectEntity }) {
         {dossier.wikiThumbnail && (
           <img
             src={dossier.wikiThumbnail}
-            alt={dossier.query}
+            alt={dossier.query ? `Portrait and visual summary for ${dossier.query}` : 'Entity thumbnail'}
             className="dossier-thumb"
+            loading="lazy"
+            decoding="async"
             onError={(e) => { e.target.style.display = 'none'; }}
           />
         )}

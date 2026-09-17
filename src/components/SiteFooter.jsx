@@ -107,16 +107,15 @@ export default function SiteFooter({
               <MapPin size={16} className="contact-icon" />
               <div>
                 <strong>PRISM Search Technologies, Inc.</strong>
-                <p>548 Market Street, Suite 79421</p>
-                <p>San Francisco, CA 94104-5401, United States</p>
+                <p>Nanded, Maharashtra 431601, India</p>
               </div>
             </div>
 
             <div className="footer-contact-item">
               <Phone size={15} className="contact-icon" />
               <div>
-                <span>Direct: +1 (415) 890-7746</span>
-                <span className="contact-sub">Mon–Fri, 9:00 AM – 6:00 PM PST</span>
+                <span>Direct: +91 (02462) 254-888</span>
+                <span className="contact-sub">Mon–Fri, 9:00 AM – 6:00 PM IST</span>
               </div>
             </div>
 

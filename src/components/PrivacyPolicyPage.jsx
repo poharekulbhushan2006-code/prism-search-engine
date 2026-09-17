@@ -97,8 +97,7 @@ export default function PrivacyPolicyPage({ onGoHome }) {
               <div>
                 <strong>Physical Corporate Headquarters</strong>
                 <p>PRISM Search Technologies, Inc.</p>
-                <p>548 Market Street, Suite 79421</p>
-                <p>San Francisco, CA 94104-5401, United States</p>
+                <p>Nanded, Maharashtra 431601, India</p>
               </div>
             </div>
             <div className="contact-info-block">
@@ -113,8 +112,8 @@ export default function PrivacyPolicyPage({ onGoHome }) {
               <Phone size={18} color="#10b981" />
               <div>
                 <strong>Direct Telephone Line</strong>
-                <p>+1 (415) 890-7746</p>
-                <p>Hours: Mon–Fri, 9:00 AM – 6:00 PM PST</p>
+                <p>+91 (02462) 254-888</p>
+                <p>Hours: Mon–Fri, 9:00 AM – 6:00 PM IST</p>
               </div>
             </div>
           </div>

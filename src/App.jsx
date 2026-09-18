@@ -749,9 +749,7 @@ export default function App() {
           {/* VIEW A: PRISM Clean Minimalist Start Page */}
           {activeTab.type === 'home' && (
             <div style={{ position: 'relative', width: '100%', minHeight: '100%' }}>
-              <HaikeiLayeredWaves opacity={0.7} />
-              <HaikeiFluidBlobs opacity={0.35} />
-              <MotionFadeIn duration={0.6}>
+              <MotionFadeIn duration={0.4}>
                 <SpeedDial
                   onSearch={(q, lens) => executeSearchInTab(q, lens || 'all')}
                   onNavigateUrl={(url) => handleNavigateUrl(url, false)}

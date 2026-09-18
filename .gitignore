@@ -33,3 +33,5 @@ Thumbs.db
 # Temporary agent scratch & media files
 scratch/
 .tempmediaStorage/
+
+.vercel

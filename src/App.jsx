@@ -25,6 +25,7 @@ import PrismMaps from './components/PrismMaps';
 import PrismTube from './components/PrismTube';
 import PrismMail from './components/PrismMail';
 import NotFoundPage from './components/NotFoundPage';
+import SingularityExperience from './components/ui/SingularityExperience';
 import ThankYouPage from './components/ThankYouPage';
 import PrivacyPolicyPage from './components/PrivacyPolicyPage';
 import TermsPage from './components/TermsPage';
@@ -80,6 +81,17 @@ function getInitialTabFromLocation() {
       type: 'privacy',
       data: null,
       history: [{ type: 'privacy', url: 'prism://privacy', title: 'Privacy Policy' }],
+      historyIndex: 0
+    };
+  }
+  if (path === '/singularity') {
+    return {
+      id: 'tab-init',
+      title: 'PRISM Singularity',
+      url: 'prism://singularity',
+      type: 'singularity',
+      data: null,
+      history: [{ type: 'singularity', url: 'prism://singularity', title: 'PRISM Singularity' }],
       historyIndex: 0
     };
   }
@@ -254,6 +266,9 @@ export default function App() {
     if (appType === 'maps') {
       title = query ? `Maps: ${query}` : 'PRISM Maps';
       url = query || 'Tokyo';
+    } else if (appType === 'singularity') {
+      title = 'PRISM Singularity';
+      url = 'prism://singularity';
     } else if (appType === 'tube') {
       title = query ? `Tube: ${query}` : 'PRISM Tube';
       url = query || '';
@@ -317,6 +332,8 @@ export default function App() {
       path = '/tube';
     } else if (activeTab.type === 'mail') {
       path = '/mail';
+    } else if (activeTab.type === 'singularity') {
+      path = '/singularity';
     }
 
     if (window.location.pathname + window.location.search !== path) {
@@ -413,6 +430,10 @@ export default function App() {
     }
     if (lower === '404' || lower === 'not found') {
       handleNavigatePage('404');
+      return;
+    }
+    if (lower === 'singularity' || lower === 'black hole' || lower === 'blackhole') {
+      handleLaunchApp('singularity');
       return;
     }
     if (lower.startsWith('maps') || lower.startsWith('map ')) {
@@ -800,6 +821,14 @@ export default function App() {
               onGoHome={handleGoHome}
               onSearch={(q) => executeSearchInTab(q, currentLens)}
               onLaunchApp={handleLaunchApp}
+            />
+          )}
+
+          {/* VIEW K: PRISM Singularity (Black Hole Experience) */}
+          {activeTab.type === 'singularity' && (
+            <SingularityExperience
+              onSearch={(q) => executeSearchInTab(q, currentLens)}
+              onBack={handleGoHome}
             />
           )}
 

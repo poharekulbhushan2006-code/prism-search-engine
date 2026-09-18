@@ -8,7 +8,8 @@ import {
   Globe,
   Bookmark,
   ShieldCheck,
-  ExternalLink
+  ExternalLink,
+  Orbit
 } from 'lucide-react';
 
 export const PRISM_APPS = [
@@ -22,12 +23,21 @@ export const PRISM_APPS = [
     type: 'home'
   },
   {
+    id: 'singularity',
+    name: 'PRISM Singularity',
+    tagline: 'Cosmic Black Hole Engine',
+    icon: Orbit,
+    color: '#f43f5e',
+    bg: 'rgba(244, 63, 94, 0.15)',
+    type: 'singularity'
+  },
+  {
     id: 'maps',
     name: 'PRISM Maps',
     tagline: 'Private World Maps',
     icon: MapPin,
     color: '#10b981',
-    bg: 'rgba(16, 185, 129, 0.15)',
+    bg: 'rgba(168, 85, 247, 0.15)',
     type: 'maps'
   },
   {
